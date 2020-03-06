@@ -16,11 +16,12 @@ Fetcher.prototype.getSearchResults = async function(q) {
     //let url = `https://www.imdb.com/title/tt8579674/?ref_=hm_fanfav_tt_1_pd_fp1`;
     //let url = `https://www.expedia.com/cars/api/pickup/list/results/script?dpln=${q.location}&bt=45&ageInRange=true&date2=${q.doDate}&time2=${q.doTime}&date1=${q.puDate}&time1=${q.puTime}`
                                                                                                                                                                               // 3.2020      12:00                                                Dublin%20Airport%20(DUB)            3.2020              12:00
-    let url = `https://carhiremarket-mobile.carhire-solutions.com/api/ota/search?age=&currency=GBP&dcity=&ddate=&dday=19&diata=3064&dlabel=Dublin%20Airport%20(DUB)&dmonthyear=${q.doDate}&dtime=${q.doTime}&dtype=2&pcity=&pdate=&pday=17&piata=3064&plabel=${q.location}&pmonthyear=${q.puDate}&promo=&ptime=${q.puTime}&ptype=2&smarket=GB&LANGUAGE=en-gb`
+    let url = `https://carhiremarket-mobile.carhire-solutions.com/api/ota/search?age=&currency=GBP&dcity=&ddate=&diata=3064&dlabel=Dublin%20Airport%20(DUB)&dday=${q.doDate.split(/\//g)[0]}&dmonthyear=${q.doDate.split(/\//g)[1]}.${q.doDate.split(/\//g)[2]}&dtime=${q.doTime}&dtype=2&pcity=&pdate=&piata=3064&pday=${q.puDate.split(/\//g)[0]}&plabel=${q.location}&pmonthyear=${q.puDate.split(/\//g)[1]}.${q.puDate.split(/\//g)[2]}&promo=&ptime=${q.puTime}&ptype=2&smarket=GB&LANGUAGE=en-gb`
 
 	 //let url = `https://www.expedia.com/cars/api/pickup/list/results/script?time1=1030AM&time2=1030AM&bt=52&ageInRange=true&dpln=5783884&date2=02%2F19%2F2020&date1=02%2F18%2F2020`
 	 //let url = `https://www.expedia.com/cars/api/pickup/list/results/script?loc2=Shelton%2C%20Connecticut&retrieveUrgencyCount=true&dagv=1&pickupIATACode=LAX&returnIATACode=HVN&styp=4&time1=1030AM&time2=1030AM&bt=52&fdrp=0&dlong=-73.137494&dlat=41.303991&rdct=1&ageInRange=true&returnCountryCode=US&subm=1&locn=Los%20Angeles%2C%20CA%20%28LAX-Los%20Angeles%20Intl.%29&drid1=9795&dpln=5783884&ttyp=2&olat=33.94415&rdus=10&olong=-118.4032&pickupCountryCode=US&date2=02%2F19%2F2020&date1=02%2F18%2F2020&retrieveNeighborhoods=true&acop=2`
-	 console.log('http://api.scraperapi.com/?api_key=1bc5dab9592c5fa13890a548d4f82445&url=' + encodeURIComponent(url));
+   console.log('http://api.scraperapi.com/?api_key=1bc5dab9592c5fa13890a548d4f82445&url=' + encodeURIComponent(url));
+   console.log(url)
     let options = {
         method: 'GET',
         uri: 'http://api.scraperapi.com/?api_key=1bc5dab9592c5fa13890a548d4f82445&url=' + encodeURIComponent(url),
