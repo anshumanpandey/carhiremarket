@@ -26,7 +26,7 @@ module.exports.extractCars = function(script, q) {
     car.vehicle.doors = offer.car.vehicle.doors;
     car.vehicle.bag = offer.car.vehicle.bags;
     car.vehicle.transmission = offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
-    car.vehicle.price = `${offer.price.standard.amount} ${offer.price.standard.currency}`;
+    car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
     car.vehicle.company = offer.vendor.name;
     car.vehicle.CDW = offer.info.cdw === null ? 0 : 1;
     cars.push(car);
