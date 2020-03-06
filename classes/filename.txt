@@ -1,0 +1,26 @@
+
+Pinging 87.117.218.69 with 32 bytes of data:
+Reply from 87.117.218.69: bytes=32 time=170ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=174ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=173ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=170ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=171ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=173ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=170ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=171ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=170ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=171ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=176ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=171ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+Reply from 87.117.218.69: bytes=32 time=169ms TTL=119
+
+Ping statistics for 87.117.218.69:
+    Packets: Sent = 19, Received = 19, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 169ms, Maximum = 176ms, Average = 170ms
