@@ -4,29 +4,29 @@ const define = function(name, empty_array = [], fn) {
   return fn();
 };
 
-module.exports.extractCars = function(script) {
+module.exports.extractCars = function(script, q) {
  try {
 	// console.log("hello 1");
-  let resultObject = eval(script);
-  //let resultObject = JSON.parse(script);
+  // let resultObject = eval(script);
+  let resultObject = JSON.parse(script);
   //console.log("hello 2");
   let cars = [];
   let details = { 'pickup' : {}, 'dropoff' : {}};
-  details.pickup.location = resultObject.adTargetingData.d[0];
-  details.pickup.datetime = resultObject.adTargetingData.ets
-  details.dropoff.location = resultObject.adTargetingData.d[0];
-  details.dropoff.datetime = resultObject.adTargetingData.ete
+  details.pickup.location = q.puDate;
+  details.pickup.datetime = q.puTime
+  details.dropoff.location = q.location
+  details.dropoff.datetime = q.doDate
 
-  for (var i = 0; i < resultObject.offers.length; i++) {
-    let offer = resultObject.offers[i];
+  for (var i = 0; i < resultObject.results.length; i++) {
+    let offer = resultObject.results[i];
     let car = {vehicle : {}};
-    car.vehicle.name = offer.vehicle.exampleMakeModel;
-    car.vehicle.seats = offer.vehicle.passengerCapacity.end;
-    car.vehicle.data_sipp = offer.vehicle.classification.code + offer.vehicle.transmission[0];
-    car.vehicle.doors = offer.vehicle.doorCount.end;
-    car.vehicle.bag = offer.vehicle.luggageCapacity.end;
-    car.vehicle.transmission = offer.vehicle.transmission;
-    car.vehicle.price = offer.fare.total.formattedValue;
+    car.vehicle.name = offer.car.vehicle.name;
+    car.vehicle.seats = offer.car.vehicle.passengers;
+    car.vehicle.data_sipp = offer.car.revisedCategory + offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
+    car.vehicle.doors = offer.car.vehicle.doors;
+    car.vehicle.bag = offer.car.vehicle.bags;
+    car.vehicle.transmission = offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
+    car.vehicle.price = `${offer.price.standard.amount} ${offer.price.standard.currency}`;
     car.vehicle.company = offer.vendor.name;
     cars.push(car);
   }

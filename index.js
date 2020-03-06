@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
     return false;
   }
   //console.log("calling parser class");
-  let parsed = parser.extractCars(script);
+  let parsed = parser.extractCars(script, q);
     res.set('Content-Type', 'text/xml');
     //res.write(parsed)
     res.write('<?xml version="1.0" encoding="UTF-8"?>' + jsonxml(parsed));
