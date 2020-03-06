@@ -28,6 +28,7 @@ module.exports.extractCars = function(script, q) {
     car.vehicle.transmission = offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
     car.vehicle.price = `${offer.price.standard.amount} ${offer.price.standard.currency}`;
     car.vehicle.company = offer.vendor.name;
+    car.vehicle.CWD = offer.info.hasCdw ? 1 : 0;
     cars.push(car);
   }
   let parsed = { scrape : {'vehicles' : cars, 'details' : details}};

@@ -26,6 +26,7 @@ module.exports.extractCars = function(script) {
     car.vehicle.transmission = offer.vehicle.transmission;
     car.vehicle.price = offer.fare.total.formattedValue;
     car.vehicle.company = offer.vendor.name;
+    car.vehicle.CWD = 0;
 	console.log("Car name:: " + car.vehicle.name);
 	console.log("Car price:: " + car.vehicle.price);
     cars.push(car);
