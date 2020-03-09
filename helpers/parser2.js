@@ -13,8 +13,6 @@ class ResponseError extends Error {
 
 module.exports.extractCars = function (script, q) {
   try {
-    console.log(script)
-
     let resultObject = JSON.parse(script);
     if (resultObject.error) {
       throw new ResponseError(resultObject.error);
