@@ -24,15 +24,18 @@ module.exports.extractCars = function (script, q) {
     details.dropoff.location = q.location
     details.dropoff.datetime = q.doDate
 
+    const fs = require('fs');
+    fs.writeFileSync('student-2.json', JSON.stringify(resultObject, null, 4));
+
     for (var i = 0; i < resultObject.results.length; i++) {
       let offer = resultObject.results[i];
       let car = { vehicle: {} };
       car.vehicle.name = offer.car.vehicle.name;
       car.vehicle.seats = offer.car.passengers;
-      car.vehicle.data_sipp = `${offer.car.revisedCategory} ${offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual'}`;
+      car.vehicle.data_sipp = `${offer.car.revisedCategory} ${offer.car.isAutomatic ? 'Automatic' : 'Manual'}`;
       car.vehicle.doors = offer.car.doors;
       car.vehicle.bag = offer.car.bags;
-      car.vehicle.transmission = offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
+      car.vehicle.transmission = offer.car.isAutomatic ? 'Automatic' : 'Manual';
       car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
       car.vehicle.company = offer.vendor.name;
       car.vehicle.acriss = offer.car.vehicle.acriss;
