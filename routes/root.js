@@ -20,7 +20,9 @@ router.get('/', async (req, res) => {
         puDate: query.puDate,
         puTime: query.puTime,
         doDate: query.doDate,
-        doTime: query.doTime
+        doTime: query.doTime,
+        currency: query.currency,
+        country: query.country,
     };
     //res.write('Ahead of calling get search results');
     let script = await fetcher.getSearchResults(q);
