@@ -13,5 +13,5 @@ app.get('/test', (req,res) => {
 app.use('/', rootRoute);
 
 
-let port = process.env.PORT || 3002;
+let port = process.env.PORT || 3029;
 app.listen(port, () => console.log('App listening on port ' + port))
