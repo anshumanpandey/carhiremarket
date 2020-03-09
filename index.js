@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const rootRoute = require('./routes/root');
-const opentravelRoute = require('./routes/opentravel');
-const timetest = require('./routes/timetest');
 
 app.use(bodyParser.urlencoded({    // to support URL-encoded bodies
   extended: true
@@ -13,8 +11,6 @@ app.get('/test', (req,res) => {
   return res.send({success: true});
 })
 app.use('/', rootRoute);
-app.use('/opentravel', opentravelRoute);
-app.use('/timetest', timetest);
 
 
 let port = process.env.PORT || 3002;
