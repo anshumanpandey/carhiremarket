@@ -29,12 +29,13 @@ module.exports.extractCars = function (script, q) {
       let car = { vehicle: {} };
       car.vehicle.name = offer.car.vehicle.name;
       car.vehicle.seats = offer.car.passengers;
-      car.vehicle.data_sipp = offer.car.revisedCategory + offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
+      car.vehicle.data_sipp = `${offer.car.revisedCategory} ${offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual'}`;
       car.vehicle.doors = offer.car.doors;
       car.vehicle.bag = offer.car.bags;
       car.vehicle.transmission = offer.car.vehicle.isAutomatic ? 'Automatic' : 'Manual';
       car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
       car.vehicle.company = offer.vendor.name;
+      car.vehicle.acriss = offer.car.vehicle.acriss;
       car.vehicle.CDW = offer.info.cdw === null ? 0 : 1;
       cars.push(car);
     }
