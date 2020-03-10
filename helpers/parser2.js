@@ -24,9 +24,6 @@ module.exports.extractCars = function (script, q) {
     details.dropoff.location = q.location
     details.dropoff.datetime = q.doDate
 
-    const fs = require('fs');
-    fs.writeFileSync('student-2.json', JSON.stringify(resultObject, null, 4));
-
     for (var i = 0; i < resultObject.results.length; i++) {
       let offer = resultObject.results[i];
       let car = { vehicle: {} };
