@@ -4,12 +4,8 @@ const define = function (name, empty_array = [], fn) {
   return fn();
 };
 
-class ResponseError extends Error {
-  constructor(message) {
-    super(message);
-    this.name = "ResponseError";
-  }
-}
+const ResponseError = require('../utils/ResponseError')
+
 
 module.exports.extractCars = function (script, q) {
   try {
