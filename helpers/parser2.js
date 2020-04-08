@@ -20,7 +20,7 @@ module.exports.extractCars = function (script, q) {
     details.dropoff.location = q.location
     details.dropoff.datetime = q.doDate
 
-    for (var i = 0; i < resultObject.results.length; i++) {
+    for (var i = 0; i < resultObject.results.filter(r => r.vendor.name === 'Budget').length; i++) {
       let offer = resultObject.results[i];
       let car = { vehicle: {} };
       car.vehicle.name = offer.car.vehicle.name;
