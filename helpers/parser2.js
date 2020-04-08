@@ -35,12 +35,8 @@ module.exports.extractCars = function (script, q) {
       car.vehicle.acriss = offer.car.vehicle.acriss;
       const cdw = offer.info.inclusions.info.find(i => i.code === 'CDW');
       let cdwTag = ''
-
-      if (offer.info.reimbursedExcess === false) {
-        cdwTag = 2;
-      }
       
-      if (cdw.excess === null && offer.info.reimbursedExcess === true) {
+      if (cdw.excess === null && cdw.reimbursedExcess === true) {
         cdwTag = 1;
       }
 
@@ -49,7 +45,7 @@ module.exports.extractCars = function (script, q) {
           cdwTag = 0;
         }
 
-        if (cdw.excess.hasOwnProperty('unknown') && offer.info.reimbursedExcess === true) {
+        if (cdw.excess.hasOwnProperty('unknown') && cdw.reimbursedExcess === true) {
           cdwTag = 1;
         }
       }
