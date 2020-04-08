@@ -24,7 +24,7 @@ router.get('/carhiremarket', async (req, res) => {
         currency: query.currency,
         country: query.country,
     };
-    //res.write('Ahead of calling get search results');
+    console.log('fetching carhiremarket')
     let script = await fetcher.getSearchResults(q);
     //console.log(script);
     if (!script) {

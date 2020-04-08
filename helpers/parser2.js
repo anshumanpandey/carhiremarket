@@ -32,7 +32,7 @@ module.exports.extractCars = function (script, q) {
       car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
       car.vehicle.company = offer.vendor.name;
       car.vehicle.acriss = offer.car.vehicle.acriss;
-      car.vehicle.CDW = offer.info.cdw === null ? 0 : 1;
+      car.vehicle.CDW = offer.info.reimbursedExcess;
       cars.push(car);
     }
     let parsed = { scrape: { 'vehicles': cars, 'details': details } };
