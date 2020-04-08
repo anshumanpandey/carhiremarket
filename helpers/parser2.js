@@ -37,24 +37,24 @@ module.exports.extractCars = function (script, q) {
       let cdwTag = ''
 
       if (offer.info.reimbursedExcess === false) {
-        cdwTag = 'CDW2';
+        cdwTag = 2;
       }
       
       if (cdw.excess === null && offer.info.reimbursedExcess === true) {
-        cdwTag = 'CDW1';
+        cdwTag = 1;
       }
 
       if (cdw.excess !== null ) {
         if (cdw.excess.hasOwnProperty('amount') ) {
-          cdwTag = 'CDW0';
+          cdwTag = 0;
         }
 
         if (cdw.excess.hasOwnProperty('unknown') && offer.info.reimbursedExcess === true) {
-          cdwTag = 'CDW1';
+          cdwTag = 1;
         }
       }
 
-      car.vehicle[cdwTag] = '';
+      car.vehicle.CDW = cdwTag;
       
       cars.push(car);
     }
