@@ -50,6 +50,10 @@ module.exports.extractCars = function (script, q) {
         }
       }
 
+      if (!cdw.reimbursedExcess) {
+        cdwTag = 0;
+      }
+
       car.vehicle.CDW = cdwTag;
       
       cars.push(car);
