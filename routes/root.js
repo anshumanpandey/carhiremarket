@@ -8,7 +8,7 @@ const parser = require('../helpers/parser2.js');
 
 let fetcher = new Fetcher();
 
-router.get('/carhiremarket', async (req, res) => {
+router.get('/', async (req, res) => {
     let reqTime = Date.now();
     let query = req.query;
     if (!req.query.location) {

@@ -10,7 +10,7 @@ function Fetcher(opts) {
 Fetcher.prototype.getSearchResults = async function (q) {
   return new Promise((resolve, reject) => {
     let cookieJar = request.jar();
-    let url = `https://carhiremarket-mobile.carhire-solutions.com/api/ota/search?currency=${q.c || 'USD'}&smarket=${q.country}&diata=${q.location}&dday=${q.doDate.split(/\//g)[0]}&dmonthyear=${q.doDate.split(/\//g)[1]}.${q.doDate.split(/\//g)[2]}&dtime=${q.doTime}&piata=${q.location}&pday=${q.puDate.split(/\//g)[0]}&pmonthyear=${q.puDate.split(/\//g)[1]}.${q.puDate.split(/\//g)[2]}&ptime=${q.puTime}`
+    let url = `https://location-voiture-simple.carhire-solutions.com/api/ota/search?currency=${q.c || 'USD'}&smarket=${q.country}&diata=${q.location}&dday=${q.doDate.split(/\//g)[0]}&dmonthyear=${q.doDate.split(/\//g)[1]}.${q.doDate.split(/\//g)[2]}&dtime=${q.doTime}&piata=${q.location}&pday=${q.puDate.split(/\//g)[0]}&pmonthyear=${q.puDate.split(/\//g)[1]}.${q.puDate.split(/\//g)[2]}&ptime=${q.puTime}`
 
     let options = {
       method: 'GET',
