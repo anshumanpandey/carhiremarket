@@ -20,7 +20,7 @@ module.exports.extractCars = function (script, q) {
     details.dropoff.location = q.location
     details.dropoff.datetime = q.doDate
 
-    const results = resultObject.results.filter(r => r.vendor.name === 'SurPrice Car Rentals');
+    const results = resultObject.results;
     for (var i = 0; i < results.length; i++) {
       let offer = results[i];
       let car = { vehicle: {} };
@@ -33,9 +33,29 @@ module.exports.extractCars = function (script, q) {
       car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
       car.vehicle.company = offer.vendor.name;
       car.vehicle.acriss = offer.car.vehicle.acriss;
-      if (offer.info.reimbursedExcess === true) {
-        car.vehicle.CDW = 1;
+      const cdw = offer.info.inclusions.info.find(i => i.code === 'CDW');
+      let cdwTag = ''
+
+      if (offer.info.reimbursedExcess === false) {
+        cdwTag = 'CDW2';
       }
+      
+      if (cdw.excess === null && offer.info.reimbursedExcess === true) {
+        cdwTag = 'CDW1';
+      }
+
+      if (cdw.excess !== null ) {
+        if (cdw.excess.hasOwnProperty('amount') ) {
+          cdwTag = 'CDW0';
+        }
+
+        if (cdw.excess.hasOwnProperty('unknown') && offer.info.reimbursedExcess === true) {
+          cdwTag = 'CDW1';
+        }
+      }
+
+      car.vehicle[cdwTag] = '';
+      
       cars.push(car);
     }
     let parsed = { scrape: { 'vehicles': cars, 'details': details } };
