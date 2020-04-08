@@ -37,7 +37,7 @@ module.exports.extractCars = function (script, q) {
       let cdwTag = ''
       
       if (cdw.excess === null && cdw.reimbursedExcess === true) {
-        cdwTag = 1;
+        cdwTag = 0;
       }
 
       if (cdw.excess !== null ) {
@@ -51,7 +51,7 @@ module.exports.extractCars = function (script, q) {
       }
 
       if (!cdw.reimbursedExcess) {
-        cdwTag = 0;
+        cdwTag = 1;
       }
 
       car.vehicle.CDW = cdwTag;
