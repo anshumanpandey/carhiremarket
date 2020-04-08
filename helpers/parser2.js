@@ -46,7 +46,7 @@ module.exports.extractCars = function (script, q) {
         }
 
         if (cdw.excess.hasOwnProperty('unknown') && cdw.reimbursedExcess === true) {
-          cdwTag = 1;
+          cdwTag = 2;
         }
       }
 
