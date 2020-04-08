@@ -20,8 +20,9 @@ module.exports.extractCars = function (script, q) {
     details.dropoff.location = q.location
     details.dropoff.datetime = q.doDate
 
-    for (var i = 0; i < resultObject.results.filter(r => r.vendor.name === 'SurPrice Car Rentals').length; i++) {
-      let offer = resultObject.results[i];
+    const results = resultObject.results.filter(r => r.vendor.name === 'SurPrice Car Rentals');
+    for (var i = 0; i < results.length; i++) {
+      let offer = results[i];
       let car = { vehicle: {} };
       car.vehicle.name = offer.car.vehicle.name;
       car.vehicle.seats = offer.car.passengers;
