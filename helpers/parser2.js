@@ -6,6 +6,46 @@ const define = function (name, empty_array = [], fn) {
 
 const ResponseError = require('../utils/ResponseError')
 
+function resolveCdw(cdw) {
+  /*
+  reimbursedExcess == false ? CDW = 2 and exit
+  reimbursedExcess == true ? CDW = 0 and exit
+  excess.amount OR excess.unknown ? CDW = 1 and exit
+  otherwise CDW = 2 and exit
+  */
+
+  const result = {
+    cdwTag: 2,
+    excess: `reimbursedExcess === false`
+  }
+
+  if (cdw.reimbursedExcess == false) {
+    return result
+  }
+
+  if (cdw.reimbursedExcess === true) {
+    result.cdwTag = 0;
+    result.excess = `cdw.reimbursedExcess === true`
+    return result
+  }
+
+  if (cdw.excess !== null) {
+    if (cdw.excess.hasOwnProperty('amount')) {
+      result.cdwTag = 1;
+      result.excess = `amount: ${cdw.excess.amount}`
+    }
+
+    if (cdw.excess.hasOwnProperty('unknown')) {
+      result.cdwTag = 1;
+      result.excess = 'unknown'
+    }
+    return result;
+  }
+
+  return result;
+
+}
+
 
 module.exports.extractCars = function (script, q) {
   try {
@@ -33,29 +73,12 @@ module.exports.extractCars = function (script, q) {
       car.vehicle.price = `${offer.price.preferred.amount} ${offer.price.preferred.currency}`;
       car.vehicle.company = offer.vendor.name;
       car.vehicle.acriss = offer.car.vehicle.acriss;
+
       const cdw = offer.info.inclusions.info.find(i => i.code === 'CDW');
-      let cdwTag = ''
-      
-      if (cdw.excess === null && cdw.reimbursedExcess === true) {
-        cdwTag = 0;
-      }
+      const resolved = resolveCdw(cdw)
+      car.vehicle.CDW = resolved.cdwTag;
+      car.vehicle.excess = resolved.excess
 
-      if (cdw.excess !== null ) {
-        if (cdw.excess.hasOwnProperty('amount') ) {
-          cdwTag = 0;
-        }
-
-        if (cdw.excess.hasOwnProperty('unknown') && cdw.reimbursedExcess === true) {
-          cdwTag = 2;
-        }
-      }
-
-      if (!cdw.reimbursedExcess) {
-        cdwTag = 1;
-      }
-
-      car.vehicle.CDW = cdwTag;
-      
       cars.push(car);
     }
     let parsed = { scrape: { 'vehicles': cars, 'details': details } };

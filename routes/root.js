@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         puTime: query.puTime,
         doDate: query.doDate,
         doTime: query.doTime,
-        currency: query.currency,
+        c: query.c,
         country: query.country,
     };
     console.log('fetching carhiremarket')
@@ -34,9 +34,13 @@ router.get('/', async (req, res) => {
     }
     //console.log("calling parser class");
     let parsed = parser.extractCars(script, q);
-    res.set('Content-Type', 'text/xml');
-    //res.write(parsed)
-    res.write('<?xml version="1.0" encoding="UTF-8"?>' + jsonxml(parsed));
+    if (!query.json) {
+        res.set('Content-Type', 'text/xml');
+        res.write('<?xml version="1.0" encoding="UTF-8"?>' + jsonxml(parsed));
+    } else {
+        res.set('Content-Type', 'application/json; charset=utf-8');
+        res.write(parsed);
+    }
     res.end();
     //res.send(parsed);
     return true;
